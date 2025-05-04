@@ -41,12 +41,33 @@ def calculator_tool(code_str, allowed_names=None):
     }
 
     try:
-        result = ' <execution_result> ' + str(eval(code_str, {"__builtins__": safe_builtins, **allowed_names}, {})) + ' </execution_result>'
+        result = '<execution_result> ' + str(eval(code_str, {"__builtins__": safe_builtins, **allowed_names}, {})) + ' </execution_result>'
         logger.info(f'CORRECT USE OF CALCULATOR TOOL. Code: {code_str}, Result: {result}')
         return result
     except Exception as e:
-        return f" <execution_result> Error: {e} </execution_result>"
+        return f"<execution_result> Error: {e} </execution_result>"
     
+def spa_to_wayu_dictionary(spanish_word, max_matches=5):
+    dictionary_path = 'assets/spanish_to_wayuunaiki_short.csv'
+
+    with open(dictionary_path, 'r', encoding='utf-8') as f:
+        all_matches = []
+        line = f.readline()
+        while line != '' and len(all_matches) < max_matches:
+            data = line.strip().split(',')
+            if re.search(rf'\b{spanish_word}\b', data[0], re.IGNORECASE):
+                all_matches.append(data)
+            line = f.readline()
+
+    if len(all_matches) > 0:
+        result = "<matches> " + '\n'.join(f'{spa}: {wayuu}' for spa, wayuu in all_matches) + " </matches>"
+        print(f'CORRECT USE OF SPA_TO_WAYU TOOL. Word: {spanish_word}, Result: {result}')
+    else:
+        result = "<matches> No matches found </matches>"
+        print(f'NO_MATCHES SPA_TO_WAYU TOOL. Word: {spanish_word}')
+
+    return result
+
 TOOLS = [
     {
         'name': 'calculator',
@@ -54,6 +75,13 @@ TOOLS = [
         'api': calculator_tool,
         'start_token': '<calculator>',
         'end_token': '</calculator>',
+    },
+    {
+        'name': 'spa_to_wayu',
+        'description': 'A tool that translates a word from Spanish to Wayuunaiki.',
+        'api': spa_to_wayu_dictionary,
+        'start_token': '<spa_to_wayuu>',
+        'end_token': '</spa_to_wayuu>',
     }
 ]
 
@@ -99,7 +127,7 @@ def generate_batch_completion(model, tokenizer, prompts: list, return_ids=False,
                     if output.outputs[0].stop_reason == tool['end_token'] and tool['start_token'] in output.outputs[0].text:
                         api_args = output.outputs[0].text.split(tool['start_token'])[1].strip()
                         api_result = tool['api'](api_args)
-                        responses[j] += f"{tool['start_token']} " + api_args + f" {tool['end_token']}" + api_result
+                        responses[j] += f"{tool['start_token']} " + api_args + f" {tool['end_token']} " + api_result
                         api_result_tokens = tokenizer.encode(api_result, return_tensors=None)
                         inputs[j] += list(output.outputs[0].token_ids) + api_result_tokens
                         mask[j] += [1] * len(output.outputs[0].token_ids) + [0] * len(api_result_tokens)
@@ -526,7 +554,7 @@ lower_clip=0.8
 upper_clip=1.2
 dr_grpo = True
 no_kl=True
-enabled_tools = ['calculator']
+enabled_tools = ['calculator', 'spa_to_wayu']
 logger.info(f'Hyperparameters:\nupdate_epochs:{update_epochs}\nrl_steps:{rl_steps}\nsims_per_prompt:{sims_per_prompt}\nminibatch_size:{minibatch_size}\npolicy_lr:{policy_lr}\nwarmup_steps:{warmup_steps}\ngae_lambda: {gae_lambda}\nnormalize advantage:{normalize_advantage}\nlower_clip:{lower_clip}\nupper_clip:{upper_clip}\nkl_penalty_coef:{kl_penalty_coef}\ntemperature:{temperature}\ndr_grpo:{dr_grpo}\nno_kl={no_kl}\nuse_deepspeed={use_deepspeed}\nuse_vllm={use_vllm}\nenabled_tools={enabled_tools}\nbase_model_name={base_model_name}')
 
 tools = [tool for tool in TOOLS if tool['name'] in enabled_tools]
@@ -623,7 +651,7 @@ if use_vllm:
     scheduling_policy="fcfs",
     dtype=torch.bfloat16,
     max_model_len=2048,
-    enable_sleep_mode=True,
+    # enable_sleep_mode=True,
     )
 
     # Load the LoRA adapter
