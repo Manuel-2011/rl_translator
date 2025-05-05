@@ -13,7 +13,7 @@ start_time = time.time()
 
 logger = getLogger(__name__)
 logsdir = 'logs'
-logfile_name = 'grpo-DRGrpo5-vllm-deepspeed-calc-tool.log'
+logfile_name = 'grpo-DRGrpo6-vllm-deepspeed-calc-tool.log'
 logpath = os.path.join(logsdir, logfile_name)
 if os.path.exists(logpath):
   os.remove(logpath)
@@ -41,11 +41,11 @@ def calculator_tool(code_str, allowed_names=None):
     }
 
     try:
-        result = '<execution_result> ' + str(eval(code_str, {"__builtins__": safe_builtins, **allowed_names}, {})) + ' </execution_result>'
+        result = ' <execution_result> ' + str(eval(code_str, {"__builtins__": safe_builtins, **allowed_names}, {})) + ' </execution_result>'
         logger.info(f'CORRECT USE OF CALCULATOR TOOL. Code: {code_str}, Result: {result}')
         return result
     except Exception as e:
-        return f"<execution_result> Error: {e} </execution_result>"
+        return f" <execution_result> Error: {e} </execution_result>"
     
 def spa_to_wayu_dictionary(spanish_word, max_matches=5):
     dictionary_path = 'assets/spanish_to_wayuunaiki_short.csv'
@@ -60,10 +60,10 @@ def spa_to_wayu_dictionary(spanish_word, max_matches=5):
             line = f.readline()
 
     if len(all_matches) > 0:
-        result = "<matches> " + '\n'.join(f'{spa}: {wayuu}' for spa, wayuu in all_matches) + " </matches>"
+        result = " <matches> " + '\n'.join(f'{spa}: {wayuu}' for spa, wayuu in all_matches) + " </matches>"
         print(f'CORRECT USE OF SPA_TO_WAYU TOOL. Word: {spanish_word}, Result: {result}')
     else:
-        result = "<matches> No matches found </matches>"
+        result = " <matches> No matches found </matches>"
         print(f'NO_MATCHES SPA_TO_WAYU TOOL. Word: {spanish_word}')
 
     return result
@@ -127,7 +127,7 @@ def generate_batch_completion(model, tokenizer, prompts: list, return_ids=False,
                     if output.outputs[0].stop_reason == tool['end_token'] and tool['start_token'] in output.outputs[0].text:
                         api_args = output.outputs[0].text.split(tool['start_token'])[1].strip()
                         api_result = tool['api'](api_args)
-                        responses[j] += f"{tool['start_token']} " + api_args + f" {tool['end_token']} " + api_result
+                        responses[j] += f"{tool['start_token']} " + api_args + f" {tool['end_token']}" + api_result
                         api_result_tokens = tokenizer.encode(api_result, return_tensors=None)
                         inputs[j] += list(output.outputs[0].token_ids) + api_result_tokens
                         mask[j] += [1] * len(output.outputs[0].token_ids) + [0] * len(api_result_tokens)
