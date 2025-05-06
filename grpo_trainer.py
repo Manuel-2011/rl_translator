@@ -8,6 +8,7 @@ from vllm import LLM, SamplingParams
 from vllm.lora.request import LoRARequest
 from functools import partial
 from collections import defaultdict
+import sacrebleu
 
 start_time = time.time()
 
@@ -170,6 +171,36 @@ def get_rewards(samples, is_terminal, correct_result):
     # An additional 1 point of reward if the answer is correct
     rewards[torch.arange(len(samples)), eos_index] += answer_is_correct.to(torch.float32)
     logger.debug(f'Rewards: {rewards[torch.arange(len(samples)), eos_index]}')
+    return rewards
+
+def get_rewards_translation(samples, is_terminal, correct_translation):
+    samples = samples.cpu()
+    is_terminal = is_terminal.cpu()
+    rewards = torch.zeros_like(samples, dtype=torch.float)
+
+    samples = tokenizer.batch_decode(samples, skip_special_tokens=True)
+    logger.debug(f'samples: {samples}')
+
+    bleu = sacrebleu.BLEU(effective_order = True)
+    def get_bleu_score(sample, correct_translation):
+        # Compute bleu score for each sample. 
+        # Bleu score normalized to [0, 1]
+        return bleu.sentence_score(sample, 
+                                   [correct_translation]
+                                   ).score / 100.0 
+
+    answer_bleu_scores = torch.tensor([
+        get_bleu_score(sample, correct_translation)
+        for sample in samples
+    ])
+
+    eos_index = (is_terminal == 0).sum(dim=1)
+    eos_index = torch.min(eos_index, torch.tensor(is_terminal.shape[1]-1))
+
+    # Assign rewards based in BLEU score
+    rewards[torch.arange(len(samples)), eos_index] += answer_bleu_scores
+    logger.debug(f'Rewards: {rewards[torch.arange(len(samples)), eos_index]}')
+    
     return rewards
 
 def run_one_mul_simulation(model, generations_num, temperature=1.0, **kwargs):
