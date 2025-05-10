@@ -8,12 +8,14 @@ from vllm import LLM, SamplingParams
 from vllm.lora.request import LoRARequest
 from functools import partial
 from collections import defaultdict
+import sacrebleu
+from torch.utils.data import Dataset, DataLoader
 
 start_time = time.time()
 
 logger = getLogger(__name__)
 logsdir = 'logs'
-logfile_name = 'grpo-DRGrpo6-vllm-deepspeed-calc-tool.log'
+logfile_name = 'spa_to_wayuu_tool_qwen_rl.log'
 logpath = os.path.join(logsdir, logfile_name)
 if os.path.exists(logpath):
   os.remove(logpath)
@@ -55,7 +57,7 @@ def spa_to_wayu_dictionary(spanish_word, max_matches=5):
         line = f.readline()
         while line != '' and len(all_matches) < max_matches:
             data = line.strip().split(',')
-            if re.search(rf'\b{spanish_word}\b', data[0], re.IGNORECASE):
+            if re.search(rf'\b{re.escape(spanish_word)}\b', data[0], re.IGNORECASE):
                 all_matches.append(data)
             line = f.readline()
 
@@ -139,10 +141,10 @@ def generate_batch_completion(model, tokenizer, prompts: list, return_ids=False,
                     mask[j] += [1] * len(output.outputs[0].token_ids)
                 elif output.outputs[0].stop_reason not in stop_tokens:
                     logger.warning(f"Unexpected finish reason: {output.outputs[0].finish_reason} {output.outputs[0].stop_reason}")
-                    responses[j] += output.outputs[0].text
-                    inputs[j] += list(output.outputs[0].token_ids)
+                    responses[j] += tokenizer.eos_token
+                    inputs[j] += [tokenizer.eos_token_id]
+                    mask[j] += [1]
                     dones[j] = True
-                    mask[j] += [1] * len(output.outputs[0].token_ids)
 
         if return_ids:
             generation_ids = inputs
@@ -178,7 +180,7 @@ def generate_batch_completion(model, tokenizer, prompts: list, return_ids=False,
 import re
 
 def extract_answer(response, transform_fn = lambda x: x, nan_val = None)->str|None:
-    ans = re.match('.*?<answer>(.*?)</answer>', response, re.DOTALL|re.MULTILINE)
+    ans = re.match('.*?<answer>(.*?)</answer>\s*$', response, re.DOTALL|re.MULTILINE)
     if ans:
         try:
             return transform_fn(ans[1].strip())
@@ -266,6 +268,37 @@ def get_rewards(samples, is_terminal, correct_result):
     logger.debug(f'Rewards: {rewards[torch.arange(len(samples)), eos_index]}')
     return rewards
 
+def get_rewards_translation(samples, is_terminal, correct_translation):
+    samples = samples.cpu()
+    is_terminal = is_terminal.cpu()
+    rewards = torch.zeros_like(samples, dtype=torch.float)
+
+    samples = tokenizer.batch_decode(samples, skip_special_tokens=True)
+    logger.debug(f'samples: {samples}')
+    samples = [extract_answer(response, nan_val="") for response in samples]
+
+    bleu = sacrebleu.BLEU(effective_order = True)
+    def get_bleu_score(sample, correct_translation):
+        # Compute bleu score for each sample. 
+        # Bleu score normalized to [0, 1]
+        return bleu.sentence_score(sample, 
+                                   [correct_translation]
+                                   ).score / 100.0 
+
+    answer_bleu_scores = torch.tensor([
+        get_bleu_score(sample, correct_translation)
+        for sample in samples
+    ])
+
+    eos_index = (is_terminal == 0).sum(dim=1)
+    eos_index = torch.min(eos_index, torch.tensor(is_terminal.shape[1]-1))
+
+    # Assign rewards based in BLEU score
+    rewards[torch.arange(len(samples)), eos_index] += answer_bleu_scores
+    logger.debug(f'Rewards: {rewards[torch.arange(len(samples)), eos_index]}')
+    
+    return rewards
+
 prompt_template = """Answer the given question. You must conduct reasoning inside <think> and </think>.
 After reasoning, if you find you need to perform a calculation, you can call a calculator tool by passing a python expression inside
 the calculator tags, in this way: <calculator> expression </calculator>, and it will return the of the calculation
@@ -286,6 +319,30 @@ def run_one_mul_simulation(model, generations_num, temperature=1.0, **kwargs):
     inputs, is_terminal, complete_prompts, prompt_length, mask = make_rollouts(model, generations_num, prompts[0], temperature=temperature, **kwargs)
     # Calculate the rewards for each response
     rewards = get_rewards(inputs, is_terminal, correct_result)
+    return inputs, rewards, is_terminal, complete_prompts, prompt_length, mask
+
+
+translate_prompt_template_tool="""Translate the following Spanish text into Wayuunaiki.
+Begin by reasoning between <think> and </think>, identifying any words or phrases you're unsure how to translate.
+If needed, you may look up words using the dictionary tool by wrapping the Spanish word in <spa_to_wayuu> and </spa_to_wayuu>. The dictionary will return matches enclosed in <matches> and </matches>. You can use the dictionary as many times as necessary.
+Once you have all the information you need, provide the final translation enclosed in <answer> and </answer>. For example: <answer> xxx </answer>.
+
+Spanish text: {}"""
+
+translate_prompt_template = """Translate the following Spanish text to Wayuunaiki.
+Provide the translated text inside <answer> and </answer>. For example, <answer> xxx </answer>. Text in spanish: {}"""
+
+def translation_simulation(model, generations_num, temperature=1.0, **kwargs):
+    spanish_text = kwargs['spa']
+    wayuu_text = kwargs['wayuu']
+    logger.debug(f'Texto en español: {spanish_text}')
+    logger.debug(f'Traducción Wayuu: {wayuu_text}')
+    prompt = translate_prompt_template_tool.format(spanish_text)
+
+    # Generate the responses for the prompt
+    inputs, is_terminal, complete_prompts, prompt_length, mask = make_rollouts(model, generations_num, prompt, temperature=temperature, max_size=kwargs['max_new_tokens'], **kwargs)
+    # Calculate the rewards for each response
+    rewards = get_rewards_translation(inputs, is_terminal, wayuu_text)
     return inputs, rewards, is_terminal, complete_prompts, prompt_length, mask
 
 
@@ -524,6 +581,22 @@ class CosineAnnealingWithWarmup:
     def get_lr(self):
         return [group['lr'] for group in self.optimizer.param_groups]
 
+class TextDataset(Dataset):
+    def __init__(self, spa_path, wayuu_path):
+        with open(spa_path, 'r', encoding='utf-8') as f:
+            self.spa_lines = [line.strip() for line in f if line.strip()]
+
+        with open(wayuu_path, 'r', encoding='utf-8') as f:
+            self.wayuu_lines = [line.strip() for line in f if line.strip()]
+
+    def __len__(self):
+        return len(self.spa_lines)
+
+    def __getitem__(self, idx):
+        spa = self.spa_lines[idx]
+        wayuu = self.wayuu_lines[idx]
+        
+        return spa, wayuu
 # %% [markdown]
 # ## Putting everything together
 
@@ -533,7 +606,7 @@ from peft import LoraConfig, get_peft_model
 # HYPERPARAMETERS
 
 # %%
-max_steps = 80*8
+max_steps = 900*8
 sims_per_prompt = 8
 rl_steps = max_steps // sims_per_prompt
 minibatch_size = 8
@@ -545,17 +618,20 @@ use_vllm = True # Use vllm for inference
 starter_vllm_lora_adapter = 'models/grpo_policy_model'
 save_adapter_path = 'models/grpo_policy_model'
 base_model_name = "Qwen/Qwen2.5-0.5B-Instruct"
+spanish_train_file = 'datasets/train.es.txt'
+wayuu_train_file = 'datasets/train.guc.txt'
 use_deepspeed = True # Use deepspeed for training
 update_ref_model_steps = None
 gae_lambda = 1.0
 normalize_advantage=False
-temperature=0.9 # Temperature for the generations
+temperature=1.0 # Temperature for the generations
 lower_clip=0.8
 upper_clip=1.2
 dr_grpo = True
 no_kl=True
-enabled_tools = ['calculator', 'spa_to_wayu']
-logger.info(f'Hyperparameters:\nupdate_epochs:{update_epochs}\nrl_steps:{rl_steps}\nsims_per_prompt:{sims_per_prompt}\nminibatch_size:{minibatch_size}\npolicy_lr:{policy_lr}\nwarmup_steps:{warmup_steps}\ngae_lambda: {gae_lambda}\nnormalize advantage:{normalize_advantage}\nlower_clip:{lower_clip}\nupper_clip:{upper_clip}\nkl_penalty_coef:{kl_penalty_coef}\ntemperature:{temperature}\ndr_grpo:{dr_grpo}\nno_kl={no_kl}\nuse_deepspeed={use_deepspeed}\nuse_vllm={use_vllm}\nenabled_tools={enabled_tools}\nbase_model_name={base_model_name}')
+max_new_tokens=512
+enabled_tools = ['spa_to_wayu']
+logger.info(f'Hyperparameters:\nupdate_epochs:{update_epochs}\nrl_steps:{rl_steps}\nsims_per_prompt:{sims_per_prompt}\nminibatch_size:{minibatch_size}\npolicy_lr:{policy_lr}\nwarmup_steps:{warmup_steps}\ngae_lambda: {gae_lambda}\nnormalize advantage:{normalize_advantage}\nlower_clip:{lower_clip}\nupper_clip:{upper_clip}\nkl_penalty_coef:{kl_penalty_coef}\ntemperature:{temperature}\ndr_grpo:{dr_grpo}\nno_kl={no_kl}\nuse_deepspeed={use_deepspeed}\nuse_vllm={use_vllm}\nenabled_tools={enabled_tools}\nbase_model_name={base_model_name}\nspanish_train_file={spanish_train_file}\nwayuu_train_file={wayuu_train_file}\nmax_new_tokens={max_new_tokens}')
 
 tools = [tool for tool in TOOLS if tool['name'] in enabled_tools]
 generate_batch_completion = partial(generate_batch_completion, tools=tools)
@@ -650,7 +726,7 @@ if use_vllm:
     swap_space=6,
     scheduling_policy="fcfs",
     dtype=torch.bfloat16,
-    max_model_len=2048,
+    max_model_len=768,
     # enable_sleep_mode=True,
     )
 
@@ -664,34 +740,43 @@ if use_vllm:
 
 ref_model = None
 
+# Load the dataset
+dataset = TextDataset(spanish_train_file, wayuu_train_file)
+dataloader = DataLoader(dataset, batch_size=1, shuffle=True)
+
 import copy
 # Training loop
 try:
-    model_engine.eval()
-    if ref_model is not None:
-        with torch.no_grad():
-            acc = eval_multiplication(ref_model, tokenizer, epochs=40, batch_size=64)
-    else:
-        if use_vllm:
-            acc = eval_multiplication(inference_engine, tokenizer, epochs=40, batch_size=64, generate_fn=partial(generate_batch_completion, use_vllm=True, lora_request=None))
-        elif use_deepspeed:
-            with model_engine.module.disable_adapter():
-                acc = eval_multiplication(model_engine, tokenizer, epochs=40, batch_size=64)
-        else:
-            with model_engine.disable_adapter():
-                acc = eval_multiplication(model_engine, tokenizer, epochs=40, batch_size=64)
+    # TODO: Create performance estimations with an eval performed in the validation dataset
+    # model_engine.eval()
+    # if ref_model is not None:
+    #     with torch.no_grad():
+    #         acc = eval_multiplication(ref_model, tokenizer, epochs=40, batch_size=64)
+    # else:
+    #     if use_vllm:
+    #         acc = eval_multiplication(inference_engine, tokenizer, epochs=40, batch_size=64, generate_fn=partial(generate_batch_completion, use_vllm=True, lora_request=None))
+    #     elif use_deepspeed:
+    #         with model_engine.module.disable_adapter():
+    #             acc = eval_multiplication(model_engine, tokenizer, epochs=40, batch_size=64)
+    #     else:
+    #         with model_engine.disable_adapter():
+    #             acc = eval_multiplication(model_engine, tokenizer, epochs=40, batch_size=64)
+    # logger.info(f'Evaluation before training: {acc}')
 
-    logger.info(f'Evaluation before training: {acc}')
     model_engine.train()
     old_model = None
 
     rl_step = 0
     while rl_step < rl_steps:
         logger.info(f'rl_step: {rl_step+1:,}')
+        spa_sample, wayuu_sample = next(iter(dataloader))
+        spa_sample, wayuu_sample = spa_sample[0], wayuu_sample[0]
         if use_vllm:
-            generations, rewards, is_terminal, complete_prompts, prompt_length, mask = run_one_mul_simulation(inference_engine, sims_per_prompt, temperature=temperature, use_vllm=use_vllm, lora_request=LoRARequest('tuning', 1, lora_path=starter_vllm_lora_adapter))
+            # generations, rewards, is_terminal, complete_prompts, prompt_length, mask = run_one_mul_simulation(inference_engine, sims_per_prompt, temperature=temperature, use_vllm=use_vllm, lora_request=LoRARequest('tuning', 1, lora_path=starter_vllm_lora_adapter))
+            generations, rewards, is_terminal, complete_prompts, prompt_length, mask = translation_simulation(inference_engine, sims_per_prompt, temperature=temperature, use_vllm=use_vllm, lora_request=LoRARequest('tuning', 1, lora_path=starter_vllm_lora_adapter), spa=spa_sample, wayuu=wayuu_sample, max_new_tokens=max_new_tokens)
         else:
-            generations, rewards, is_terminal, complete_prompts, prompt_length = run_one_mul_simulation(model_engine, sims_per_prompt, temperature=temperature)
+            # generations, rewards, is_terminal, complete_prompts, prompt_length = run_one_mul_simulation(model_engine, sims_per_prompt, temperature=temperature)
+            generations, rewards, is_terminal, complete_prompts, prompt_length = translation_simulation(model_engine, sims_per_prompt, temperature=temperature, spa=spa_sample, wayuu=wayuu_sample, max_new_tokens=max_new_tokens)
         advantanges = compute_advantages(rewards, is_terminal, gae_lambda=gae_lambda, dr_grpo=dr_grpo)
         if (advantanges == 0).all().item():
             continue
@@ -706,16 +791,16 @@ try:
             update_vllm_instance(inference_engine, model_engine)
 
         # Track progress on specific task
-        if (rl_step+1)%10 == 0:
-            model_engine.eval()
-            with torch.no_grad():
-                if use_vllm:
-                    # update_vllm_instance(inference_engine, model_engine)
-                    acc = eval_multiplication(inference_engine, tokenizer, epochs=20, batch_size=64, generate_fn=partial(generate_batch_completion, use_vllm=True, lora_request=LoRARequest('tuning', 1, lora_path=starter_vllm_lora_adapter)))
-                else:
-                    acc = eval_multiplication(model_engine, tokenizer, epochs=20, batch_size=64)
-            logger.info(f'Evaluation on rl step {rl_step+1:,}: {acc}')
-            model_engine.train()
+        # if (rl_step+1)%10 == 0:
+        #     model_engine.eval()
+        #     with torch.no_grad():
+        #         if use_vllm:
+        #             # update_vllm_instance(inference_engine, model_engine)
+        #             acc = eval_multiplication(inference_engine, tokenizer, epochs=20, batch_size=64, generate_fn=partial(generate_batch_completion, use_vllm=True, lora_request=LoRARequest('tuning', 1, lora_path=starter_vllm_lora_adapter)))
+        #         else:
+        #             acc = eval_multiplication(model_engine, tokenizer, epochs=20, batch_size=64)
+        #     logger.info(f'Evaluation on rl step {rl_step+1:,}: {acc}')
+        #     model_engine.train()
 
         if update_ref_model_steps is not None and (rl_step+1)%update_ref_model_steps == 0:
             ref_model = copy.deepcopy(model_engine).eval() # Update the ref model
@@ -726,12 +811,12 @@ except KeyboardInterrupt:
     pass
 
 model_engine.eval()
-with torch.no_grad():
-    if use_vllm:
-        acc = eval_multiplication(inference_engine, tokenizer, epochs=40, batch_size=64, generate_fn=partial(generate_batch_completion, use_vllm=True, lora_request=LoRARequest('tuning', 1, lora_path=starter_vllm_lora_adapter)))
-    else:
-        acc = eval_multiplication(model_engine, tokenizer, epochs=40, batch_size=64)
-logger.info(f'Evaluation after training: {acc}')
+# with torch.no_grad():
+#     if use_vllm:
+#         acc = eval_multiplication(inference_engine, tokenizer, epochs=40, batch_size=64, generate_fn=partial(generate_batch_completion, use_vllm=True, lora_request=LoRARequest('tuning', 1, lora_path=starter_vllm_lora_adapter)))
+#     else:
+#         acc = eval_multiplication(model_engine, tokenizer, epochs=40, batch_size=64)
+# logger.info(f'Evaluation after training: {acc}')
 model_engine.save_pretrained(save_adapter_path)
 
 
