@@ -17,7 +17,7 @@ start_time = time.time()
 
 logger = getLogger(__name__)
 logsdir = 'logs'
-logfile_name = 'spa_to_wayuu_tool_qwen_rl_sft_qwen_char_score.log'
+logfile_name = 'spa_to_wayuu_tool_qwen_rl_sft_qwen_char_score2.log'
 logpath = os.path.join(logsdir, logfile_name)
 if os.path.exists(logpath):
   os.remove(logpath)
@@ -108,8 +108,11 @@ def generate_batch_completion(model, tokenizer, prompts: list, return_ids=False,
     }
     default_sampling_args.update(kwargs)
 
-    model_inputs = tokenizer(texts, padding='longest', padding_side='left', \
-        return_tensors="pt" if not use_vllm else None)
+    if use_vllm:
+        model_inputs = tokenizer(texts)
+    else:
+        model_inputs = tokenizer(texts, padding='longest', padding_side='left', \
+            return_tensors="pt")
     
     if use_vllm:
         inputs = model_inputs.input_ids
@@ -122,7 +125,7 @@ def generate_batch_completion(model, tokenizer, prompts: list, return_ids=False,
         for action_step in range(actions_num + 1 if len(tools_enabled) > 0 else 1):
             sampling_params = SamplingParams(temperature=default_sampling_args["temperature"], top_p=default_sampling_args['top_p'], top_k=-1, max_tokens=default_sampling_args['max_new_tokens'],
                 stop=stop_tokens)
-            outputs = model.generate(prompt_token_ids=inputs, sampling_params=sampling_params, lora_request=kwargs['lora_request'], use_tqdm=kwargs['use_tqdm'])
+            outputs = model.generate(prompt_token_ids=inputs, sampling_params=sampling_params, lora_request=kwargs['lora_request'], use_tqdm=kwargs['use_tqdm'] if 'use_tqdm' in kwargs else None)
 
             for j, output in enumerate(outputs):
                 if dones[j]:
@@ -132,7 +135,7 @@ def generate_batch_completion(model, tokenizer, prompts: list, return_ids=False,
                     if output.outputs[0].stop_reason == tool['end_token'] and tool['start_token'] in output.outputs[0].text:
                         api_args = output.outputs[0].text.split(tool['start_token'])[1].strip()
                         api_result = tool['api'](api_args)
-                        responses[j] += f"{tool['start_token']} " + api_args + f" {tool['end_token']}" + api_result
+                        responses[j] += output.outputs[0].text + f"{tool['end_token']}" + api_result
                         api_result_tokens = tokenizer.encode(api_result, return_tensors=None)
                         inputs[j] += list(output.outputs[0].token_ids) + api_result_tokens
                         mask[j] += [1] * len(output.outputs[0].token_ids) + [0] * len(api_result_tokens)
@@ -229,7 +232,7 @@ def eval_translations(model, tokenizer, dataset, prompt_template, batches=10, ba
     for i in tqdm(range(batches)):
         prompts, answers = next(iter(dataloader))
         prompts = [prompt_template.format(prompt) for prompt in prompts]
-        responses = generate_fn(model, tokenizer, prompts, use_tqdm=False)
+        responses = generate_fn(model, tokenizer, prompts, use_tqdm=False, temperature=0, top_p=1, max_new_tokens=768)
         samples = [extract_answer(response, nan_val="") for response in responses]
 
         bleu = sacrebleu.BLEU(effective_order = True)
@@ -678,7 +681,7 @@ from peft import LoraConfig, get_peft_model
 # HYPERPARAMETERS
 
 # %%
-max_steps = 900*8
+max_steps = 10000*8
 sims_per_prompt = 8
 rl_steps = max_steps // sims_per_prompt
 minibatch_size = 8
@@ -687,8 +690,8 @@ policy_lr = 5e-6
 kl_penalty_coef = 0.04
 warmup_steps = 25
 use_vllm = True # Use vllm for inference
-save_adapter_path = 'models/grpo_policy_model5'
-best_adapter_path = 'models/best_policy_model5'
+save_adapter_path = 'models/grpo_policy_model6'
+best_adapter_path = 'models/best_policy_model6'
 base_model_name = "Qwen/Qwen2.5-0.5B-Instruct"
 spanish_train_file = 'datasets/train.es.txt'
 wayuu_train_file = 'datasets/train.guc.txt'
@@ -707,7 +710,7 @@ max_new_tokens=512
 enabled_tools = ['spa_to_wayu']
 checkpoint_to_start = 'models/sft_base_qwen2'
 action_calls = 4
-accum_grad_steps = 4
+accum_grad_steps = 64
 logger.info(f'Hyperparameters:\nupdate_epochs:{update_epochs}\nrl_steps:{rl_steps}\nsims_per_prompt:{sims_per_prompt}\nminibatch_size:{minibatch_size}\npolicy_lr:{policy_lr}\nwarmup_steps:{warmup_steps}\ngae_lambda: {gae_lambda}\nnormalize advantage:{normalize_advantage}\nlower_clip:{lower_clip}\nupper_clip:{upper_clip}\nkl_penalty_coef:{kl_penalty_coef}\ntemperature:{temperature}\ndr_grpo:{dr_grpo}\nno_kl={no_kl}\nuse_deepspeed={use_deepspeed}\nuse_vllm={use_vllm}\nenabled_tools={enabled_tools}\nbase_model_name={base_model_name}\nspanish_train_file={spanish_train_file}\nwayuu_train_file={wayuu_train_file}\nmax_new_tokens={max_new_tokens}\ncheckpoint_to_start={checkpoint_to_start}\naccum_grad_steps={accum_grad_steps}\naction_calls={action_calls}\nspanish_val_file={spanish_val_file}\nwayuu_val_file={wayuu_val_file}\nbest_adapter_path={best_adapter_path}\nsave_adapter_path={save_adapter_path}')
 
 tools = [tool for tool in TOOLS if tool['name'] in enabled_tools]
@@ -833,7 +836,9 @@ import copy
 try:
     model_engine.eval()
     if use_vllm:
-        acc = eval_translations(inference_engine, tokenizer, validation_dataset, translate_prompt_template_tool, batches=10, batch_size=64, generate_fn=partial(generate_batch_completion, use_vllm=True, lora_request=lora_request, max_new_tokens=max_new_tokens))
+        pass
+        acc = 0
+        # acc = eval_translations(inference_engine, tokenizer, validation_dataset, translate_prompt_template_tool, batches=10, batch_size=64, generate_fn=partial(generate_batch_completion, use_vllm=True, lora_request=lora_request, max_new_tokens=max_new_tokens))
     else:
         raise ValueError('use_vllm is False')
     logger.info(f'Evaluation before training: {acc}')
@@ -892,7 +897,7 @@ try:
             with torch.no_grad():
                 if use_vllm:
                     # update_vllm_instance(inference_engine, model_engine)
-                    acc = eval_translations(inference_engine, tokenizer, validation_dataset, translate_prompt_template_tool, batches=10, batch_size=64, generate_fn=partial(generate_batch_completion, use_vllm=True, lora_request=lora_request, max_new_tokens=max_new_tokens))
+                    acc = eval_translations(inference_engine, tokenizer, validation_dataset, translate_prompt_template_tool, batches=10, batch_size=64, generate_fn=partial(generate_batch_completion, use_vllm=True, lora_request=lora_request))
                 else:
                     raise ValueError('use_vllm is False')
             logger.info(f'Evaluation on rl step {rl_step+1:,}: {acc}')
@@ -911,13 +916,14 @@ try:
 
         rl_step += 1
 
-except:
+except Exception as error:
+    logger.critical(error, exc_info=True)
     pass
 
 model_engine.eval()
 with torch.no_grad():
     if use_vllm:
-        acc = eval_translations(inference_engine, tokenizer, validation_dataset, translate_prompt_template_tool, batches=10, batch_size=64, generate_fn=partial(generate_batch_completion, use_vllm=True, lora_request=lora_request, max_new_tokens=max_new_tokens))
+        acc = eval_translations(inference_engine, tokenizer, validation_dataset, translate_prompt_template_tool, batches=10, batch_size=64, generate_fn=partial(generate_batch_completion, use_vllm=True, lora_request=lora_request))
     else:
         raise ValueError('use_vllm is False')
 logger.info(f'Evaluation after training: {acc}')
