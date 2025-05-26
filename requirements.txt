@@ -134,3 +134,4 @@ xformers==0.0.28.post3
 xgrammar==0.1.11
 yarl==1.20.0
 zipp==3.21.0
+sacrebleu==2.5.1
