@@ -60,7 +60,7 @@ There are several ways to fine-tune a decoder model.
 ### Supervised fine-tuning 
 Run the following scripts in order:
 1. [create_sft_dataset.py](create_sft_dataset.py): Generates a pkl dataset for Supervised fine-tuning.
-2. [sft_trainer.py](sft_trainer.py): Fine-tunes a model in a supervised fashion to learn the base language dynamics.
+2. [sft_trainer.py](sft_trainer.py): Fine-tunes a model in a supervised fashion to learn the base language dynamics. (Insert your huggingface token to load the models)
 3. [evaluation.py](evaluation.py): Evaluates the model on the validation set using the BLEU score metric.
 
 ### Reinforcement Learning fine-tuning
@@ -69,7 +69,13 @@ Run the following scripts in order:
 2. [evaluation.py](evaluation.py): Evaluates the model on the validation set using the BLEU score metric.
 
 ### Supervised fine-tuning + Reinforcement Learning fine-tuning
+Run the following scripts in order:
 1. [create_sft_dataset.py](create_sft_dataset.py): Generates a pkl dataset for Supervised fine-tuning.
 2. [sft_trainer.py](sft_trainer.py): Fine-tunes a model in a supervised fashion to learn the base language dynamics.
 3. [grpo_trainer_with_tools.py](grpo_trainer_with_tools.py) / [grpo_trainer.py](grpo_trainer.py): Fine-tunes a model with Reinforcement Learning with or without using the dictionary tool.
-4. [evaluation.py](evaluation.py): Evaluates the model on the validation set using the BLEU score metric. 
+4. [evaluation.py](evaluation.py): Evaluates the model on the validation set using the BLEU score metric.
+
+## Fine-tuning encoder-decoder models (NLLB)
+You must download a NLLB pretrained model for Spanish-Wayuunaiki translation from this [dropbox url](https://www.dropbox.com/scl/fo/bj7ra25nbf0bjed5f6y92/AA45b7hSqeVkWDYWmaDyxfA/models?dl=0&preview=wayuu-spanish.tgz&rlkey=ag6dssslslwiqjrtg6kd8a8ym&subfolder_nav_tracking=1). Once the file is downloaded, copy the folder `nllb_wayuu_esp_completo_1_3B-V2` into the models folder. Once the model is in the models folder, you can fine-tune it by running these scripts:
+1. [grpo_trainer_nllb_lora_wayuu.py](grpo_trainer_nllb_lora_wayuu.py): Fine-tunes a model with Reinforcement Learning without using the dictionary tool.
+2. [evaluation.py](evaluation.py): Evaluates the model on the validation set using the BLEU score metric.
