@@ -9,7 +9,7 @@ This repository has the following relevant folders:
 - Training files: The files starting with grpo_trainer... are the files that fine-tune LLM to translate Spanish to Wayuunaiki. **The usage of these files depends on the fine-tuned model**.
 
 ## Hyperparameters
-There are two types of hyperparameters, some for model training and some for paths (depending on the file they may or not may appear):
+There are two types of hyperparameters, some for model training and some for paths (depending on the file they may or not may appear). Make sure you modify them to the values you need before running the experiments (or changing them if something failed).
 
 ### Training hyperparameters
 
@@ -53,3 +53,7 @@ Setting up the environment is the same process for both branches. Follow these i
 Depending on the type of model to be fine-tuned, different scripts must be used.
 
 ### Decoder only models (Qwen-Llama)
+Run the following scripts in order:
+1. [create_sft_dataset.py](create_sft_dataset.py): Generates a pkl dataset for Supervised fine-tuning.
+2. [sft_trainer.py](sft_trainer.py): Fine-tunes a model in a supervised fashion to teach it how to use the dictionary tool.
+3. [evaluation.py](evaluation.py): Evaluates the model on the validation set using the BLEU score metric.
