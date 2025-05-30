@@ -9,7 +9,6 @@ from vllm.lora.request import LoRARequest
 from functools import partial
 from collections import defaultdict
 import sacrebleu
-import evaluate 
 
 start_time = time.time()
 
@@ -20,8 +19,6 @@ logpath = os.path.join(logsdir, logfile_name)
 if os.path.exists(logpath):
   os.remove(logfile_name)
 logging.basicConfig(filename=logpath, encoding='utf-8', level=logging.DEBUG)
-character = evaluate.load("character")
-
 
 def get_policy_model(model_name):
 
@@ -202,37 +199,6 @@ def get_rewards_translation(samples, is_terminal, correct_translation):
 
     # Assign rewards based in BLEU score
     rewards[torch.arange(len(samples)), eos_index] += answer_bleu_scores
-    logger.debug(f'Rewards: {rewards[torch.arange(len(samples)), eos_index]}')
-    
-    return rewards
-
-def get_rewards_translation_character(samples, is_terminal, correct_translation):
-    samples = samples.cpu()
-    is_terminal = is_terminal.cpu()
-    rewards = torch.zeros_like(samples, dtype=torch.float)
-
-    samples = tokenizer.batch_decode(samples, skip_special_tokens=True)
-    logger.debug(f'samples: {samples}')
-
-    
-    def get_character_score(sample, correct_translation):
-        # Compute character score for each sample. 
-        # Character score between 0 and 1
-        score = character.compute(
-            references=[correct_translation], predictions=[sample]
-            )["cer_score"]
-        return 1 - score
-
-    answer_character_scores = torch.tensor([
-        get_character_score(sample, correct_translation)
-        for sample in samples
-    ])
-
-    eos_index = (is_terminal == 0).sum(dim=1)
-    eos_index = torch.min(eos_index, torch.tensor(is_terminal.shape[1]-1))
-
-    # Assign rewards based on character score
-    rewards[torch.arange(len(samples)), eos_index] += answer_character_scores
     logger.debug(f'Rewards: {rewards[torch.arange(len(samples)), eos_index]}')
     
     return rewards
