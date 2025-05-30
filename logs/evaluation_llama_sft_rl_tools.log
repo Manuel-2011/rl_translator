@@ -1,0 +1,11 @@
+INFO:__main__:Validation dataset
+INFO:__main__:Average BLEU score: 21.6487
+INFO:__main__:Average tools used: 0.9998
+INFO:__main__:Average calls per sample: 3.7006
+INFO:__main__:Average unfinished answers: 0.0002
+INFO:__main__:Test dataset
+INFO:__main__:Average BLEU score: 2.2921
+INFO:__main__:Average tools used: 1.0000
+INFO:__main__:Average calls per sample: 3.5743
+INFO:__main__:Average unfinished answers: 0.0000
+INFO:__main__:Total execution time in minutes: 31.49

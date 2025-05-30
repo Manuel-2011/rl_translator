@@ -1,0 +1,5 @@
+INFO:__main__:Validation dataset
+INFO:__main__:Average BLEU score: 9.2476
+INFO:__main__:Test dataset
+INFO:__main__:Average BLEU score: 0.6014
+INFO:__main__:Total execution time in minutes: 29.24

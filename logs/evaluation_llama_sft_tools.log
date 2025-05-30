@@ -1,0 +1,12 @@
+WARNING:huggingface_hub.file_download:Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+INFO:__main__:Validation dataset
+INFO:__main__:Average BLEU score: 13.9755
+INFO:__main__:Average tools used: 0.8725
+INFO:__main__:Average calls per sample: 2.9722
+INFO:__main__:Average unfinished answers: 0.0003
+INFO:__main__:Test dataset
+INFO:__main__:Average BLEU score: 2.0463
+INFO:__main__:Average tools used: 0.8209
+INFO:__main__:Average calls per sample: 2.9321
+INFO:__main__:Average unfinished answers: 0.0000
+INFO:__main__:Total execution time in minutes: 31.27

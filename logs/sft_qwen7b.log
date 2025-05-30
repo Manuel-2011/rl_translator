@@ -1,0 +1,618 @@
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/generation_config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Epoch 0, Step 1, Loss: 4.0146
+INFO:__main__:Epoch 0, Step 20, Loss: 2.7744
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 40, Loss: 1.9603
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 60, Loss: 1.5884
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 80, Loss: 1.4028
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 100, Loss: 1.1969
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 120, Loss: 1.1643
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1228])
+INFO:__main__:Epoch 0, Step 140, Loss: 1.1206
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 160, Loss: 0.9788
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 180, Loss: 0.9778
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 200, Loss: 0.9636
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 220, Loss: 0.9900
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 777])
+INFO:__main__:Epoch 0, Step 240, Loss: 0.8781
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 260, Loss: 0.8917
+INFO:__main__:Epoch 0, Step 280, Loss: 0.9020
+INFO:__main__:Epoch 0, Step 300, Loss: 0.8632
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 320, Loss: 0.8902
+INFO:__main__:Epoch 0, Step 340, Loss: 0.8535
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 360, Loss: 0.7812
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 380, Loss: 0.8338
+INFO:__main__:Epoch 0, Step 400, Loss: 0.8378
+INFO:__main__:Epoch 0, Step 420, Loss: 0.7168
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 440, Loss: 0.7277
+INFO:__main__:Epoch 0, Step 460, Loss: 0.7453
+INFO:__main__:Epoch 0, Step 480, Loss: 0.7543
+INFO:__main__:Epoch 0, Step 500, Loss: 0.7699
+INFO:__main__:Epoch 0, Step 520, Loss: 0.7004
+DEBUG:urllib3.connectionpool:Resetting dropped connection: huggingface.co
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 540, Loss: 0.7233
+INFO:__main__:Epoch 0, Step 560, Loss: 0.6957
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 580, Loss: 0.7397
+INFO:__main__:Epoch 0, Step 600, Loss: 0.7091
+INFO:__main__:Epoch 0, Step 620, Loss: 0.7545
+INFO:__main__:Epoch 0, Step 640, Loss: 0.7206
+INFO:__main__:Epoch 0, Step 660, Loss: 0.7167
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 984])
+INFO:__main__:Epoch 0, Step 680, Loss: 0.6877
+DEBUG:urllib3.connectionpool:Resetting dropped connection: huggingface.co
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 700, Loss: 0.7020
+INFO:__main__:Epoch 0, Step 720, Loss: 0.7026
+INFO:__main__:Epoch 0, Step 740, Loss: 0.6807
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 760, Loss: 0.6976
+INFO:__main__:Epoch 0, Step 780, Loss: 0.6650
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 800, Loss: 0.6369
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1243])
+INFO:__main__:Epoch 0, Step 820, Loss: 0.5337
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1219])
+INFO:__main__:Epoch 0, Step 840, Loss: 0.6490
+INFO:__main__:Epoch 0, Step 860, Loss: 0.6503
+INFO:__main__:Epoch 0, Step 880, Loss: 0.6539
+INFO:__main__:Epoch 0, Step 900, Loss: 0.5483
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 889])
+INFO:__main__:Epoch 0, Step 920, Loss: 0.5550
+INFO:__main__:Epoch 0, Step 940, Loss: 0.6142
+INFO:__main__:Epoch 0, Step 960, Loss: 0.6690
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 940])
+INFO:__main__:Epoch 0, Step 980, Loss: 0.6240
+INFO:__main__:Epoch 0, Step 1000, Loss: 0.5828
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 775])
+INFO:__main__:Epoch 0, Step 1020, Loss: 0.6577
+INFO:__main__:Epoch 0, Step 1040, Loss: 0.5697
+INFO:__main__:Epoch 0, Step 1060, Loss: 0.6663
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1157])
+INFO:__main__:Epoch 0, Step 1080, Loss: 0.6281
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1172])
+INFO:__main__:Epoch 0, Step 1100, Loss: 0.5460
+INFO:__main__:Epoch 0, Step 1120, Loss: 0.5758
+INFO:__main__:Epoch 0, Step 1140, Loss: 0.5646
+INFO:__main__:Epoch 0, Step 1160, Loss: 0.5973
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1400])
+INFO:__main__:Epoch 0, Step 1180, Loss: 0.6030
+INFO:__main__:Epoch 0, Step 1200, Loss: 0.5777
+INFO:__main__:Epoch 0, Step 1220, Loss: 0.5494
+INFO:__main__:Epoch 0, Step 1240, Loss: 0.5436
+INFO:__main__:Epoch 0, Step 1260, Loss: 0.5186
+DEBUG:urllib3.connectionpool:Resetting dropped connection: huggingface.co
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 1280, Loss: 0.5503
+INFO:__main__:Epoch 0, Step 1300, Loss: 0.5088
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 1320, Loss: 0.5510
+INFO:__main__:Epoch 0, Step 1340, Loss: 0.5147
+INFO:__main__:Epoch 0, Step 1360, Loss: 0.4948
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 1380, Loss: 0.5532
+INFO:__main__:Epoch 0, Step 1400, Loss: 0.4741
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 1420, Loss: 0.5535
+INFO:__main__:Epoch 0, Step 1440, Loss: 0.4995
+INFO:__main__:Epoch 0, Step 1460, Loss: 0.5320
+INFO:__main__:Epoch 0, Step 1480, Loss: 0.5116
+INFO:__main__:Epoch 0, Step 1500, Loss: 0.4770
+INFO:__main__:Epoch 0, Step 1520, Loss: 0.5935
+INFO:__main__:Epoch 0, Step 1540, Loss: 0.5494
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 2083])
+INFO:__main__:Epoch 0, Step 1560, Loss: 0.5088
+INFO:__main__:Epoch 0, Step 1580, Loss: 0.5386
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1101])
+INFO:__main__:Epoch 0, Step 1600, Loss: 0.4842
+INFO:__main__:Epoch 0, Step 1620, Loss: 0.4709
+DEBUG:urllib3.connectionpool:Resetting dropped connection: huggingface.co
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 2154])
+INFO:__main__:Epoch 0, Step 1640, Loss: 0.5100
+INFO:__main__:Epoch 0, Step 1660, Loss: 0.4669
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 1680, Loss: 0.5290
+INFO:__main__:Epoch 0, Step 1700, Loss: 0.5432
+INFO:__main__:Epoch 0, Step 1720, Loss: 0.5249
+INFO:__main__:Epoch 0, Step 1740, Loss: 0.4819
+INFO:__main__:Epoch 0, Step 1760, Loss: 0.5015
+INFO:__main__:Epoch 0, Step 1780, Loss: 0.4937
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 3532])
+INFO:__main__:Epoch 0, Step 1800, Loss: 0.4703
+INFO:__main__:Epoch 0, Step 1820, Loss: 0.4685
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 771])
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 5502])
+INFO:__main__:Epoch 0, Step 1840, Loss: 0.4700
+INFO:__main__:Epoch 0, Step 1860, Loss: 0.4563
+DEBUG:urllib3.connectionpool:Resetting dropped connection: huggingface.co
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 805])
+INFO:__main__:Epoch 0, Step 1880, Loss: 0.4321
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 1900, Loss: 0.4950
+INFO:__main__:Epoch 0, Step 1920, Loss: 0.4258
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 1940, Loss: 0.4415
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 813])
+INFO:__main__:Epoch 0, Step 1960, Loss: 0.4691
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1873])
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 845])
+INFO:__main__:Epoch 0, Step 1980, Loss: 0.4823
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 782])
+INFO:__main__:Epoch 0, Step 2000, Loss: 0.4551
+INFO:__main__:Epoch 0, Step 2020, Loss: 0.4572
+INFO:__main__:Epoch 0, Step 2040, Loss: 0.4656
+INFO:__main__:Epoch 0, Step 2060, Loss: 0.4451
+INFO:__main__:Epoch 0, Step 2080, Loss: 0.4120
+DEBUG:urllib3.connectionpool:Resetting dropped connection: huggingface.co
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 2100, Loss: 0.4101
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 2120, Loss: 0.4355
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 809])
+INFO:__main__:Epoch 0, Step 2140, Loss: 0.4776
+INFO:__main__:Epoch 0, Step 2160, Loss: 0.4602
+INFO:__main__:Epoch 0, Step 2180, Loss: 0.4875
+INFO:__main__:Epoch 0, Step 2200, Loss: 0.3985
+DEBUG:urllib3.connectionpool:Resetting dropped connection: huggingface.co
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 2220, Loss: 0.4432
+INFO:__main__:Epoch 0, Step 2240, Loss: 0.4165
+INFO:__main__:Epoch 0, Step 2260, Loss: 0.4630
+INFO:__main__:Epoch 0, Step 2280, Loss: 0.4326
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 829])
+INFO:__main__:Epoch 0, Step 2300, Loss: 0.4235
+INFO:__main__:Epoch 0, Step 2320, Loss: 0.4453
+INFO:__main__:Epoch 0, Step 2340, Loss: 0.4200
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1874])
+INFO:__main__:Epoch 0, Step 2360, Loss: 0.4089
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 839])
+INFO:__main__:Epoch 0, Step 2380, Loss: 0.3874
+DEBUG:urllib3.connectionpool:Resetting dropped connection: huggingface.co
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 2400, Loss: 0.4285
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1605])
+INFO:__main__:Epoch 0, Step 2420, Loss: 0.4180
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1121])
+INFO:__main__:Epoch 0, Step 2440, Loss: 0.4442
+INFO:__main__:Epoch 0, Step 2460, Loss: 0.4560
+INFO:__main__:Epoch 0, Step 2480, Loss: 0.4152
+INFO:__main__:Epoch 0, Step 2500, Loss: 0.4338
+INFO:__main__:Epoch 0, Step 2520, Loss: 0.4540
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1449])
+INFO:__main__:Epoch 0, Step 2540, Loss: 0.4551
+INFO:__main__:Epoch 0, Step 2560, Loss: 0.4491
+INFO:__main__:Epoch 0, Step 2580, Loss: 0.4791
+INFO:__main__:Epoch 0, Step 2600, Loss: 0.4471
+INFO:__main__:Epoch 0, Step 2620, Loss: 0.4406
+INFO:__main__:Epoch 0, Step 2640, Loss: 0.4365
+INFO:__main__:Epoch 0, Step 2660, Loss: 0.4485
+INFO:__main__:Epoch 0, Step 2680, Loss: 0.4776
+INFO:__main__:Epoch 0, Step 2700, Loss: 0.4297
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 798])
+INFO:__main__:Epoch 0, Step 2720, Loss: 0.4859
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1150])
+INFO:__main__:Epoch 0, Step 2740, Loss: 0.4498
+INFO:__main__:Epoch 0, Step 2760, Loss: 0.4022
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1159])
+INFO:__main__:Epoch 0, Step 2780, Loss: 0.4519
+INFO:__main__:Epoch 0, Step 2800, Loss: 0.4206
+INFO:__main__:Epoch 0, Step 2820, Loss: 0.4059
+INFO:__main__:Epoch 0, Step 2840, Loss: 0.4012
+INFO:__main__:Epoch 0, Step 2860, Loss: 0.3632
+DEBUG:urllib3.connectionpool:Resetting dropped connection: huggingface.co
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 2880, Loss: 0.3970
+INFO:__main__:Epoch 0, Step 2900, Loss: 0.4087
+INFO:__main__:Epoch 0, Step 2920, Loss: 0.4414
+INFO:__main__:Epoch 0, Step 2940, Loss: 0.4246
+INFO:__main__:Epoch 0, Step 2960, Loss: 0.3997
+INFO:__main__:Epoch 0, Step 2980, Loss: 0.3787
+INFO:__main__:Epoch 0, Step 3000, Loss: 0.4162
+INFO:__main__:Epoch 0, Step 3020, Loss: 0.4486
+INFO:__main__:Epoch 0, Step 3040, Loss: 0.4033
+INFO:__main__:Epoch 0, Step 3060, Loss: 0.3841
+INFO:__main__:Epoch 0, Step 3080, Loss: 0.3892
+INFO:__main__:Epoch 0, Step 3100, Loss: 0.3761
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 937])
+INFO:__main__:Epoch 0, Step 3120, Loss: 0.4152
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 843])
+INFO:__main__:Epoch 0, Step 3140, Loss: 0.4103
+INFO:__main__:Epoch 0, Step 3160, Loss: 0.3970
+INFO:__main__:Epoch 0, Step 3180, Loss: 0.3699
+INFO:__main__:Epoch 0, Step 3200, Loss: 0.3724
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 4578])
+INFO:__main__:Epoch 0, Step 3220, Loss: 0.3521
+DEBUG:urllib3.connectionpool:Resetting dropped connection: huggingface.co
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 837])
+INFO:__main__:Epoch 0, Step 3240, Loss: 0.3783
+INFO:__main__:Epoch 0, Step 3260, Loss: 0.3897
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 861])
+INFO:__main__:Epoch 0, Step 3280, Loss: 0.3861
+INFO:__main__:Epoch 0, Step 3300, Loss: 0.3978
+INFO:__main__:Epoch 0, Step 3320, Loss: 0.3841
+INFO:__main__:Epoch 0, Step 3340, Loss: 0.3717
+INFO:__main__:Epoch 0, Step 3360, Loss: 0.3529
+INFO:__main__:Epoch 0, Step 3380, Loss: 0.3868
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1096])
+INFO:__main__:Epoch 0, Step 3400, Loss: 0.3764
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1501])
+INFO:__main__:Epoch 0, Step 3420, Loss: 0.3875
+INFO:__main__:Epoch 0, Step 3440, Loss: 0.3665
+INFO:__main__:Epoch 0, Step 3460, Loss: 0.4046
+INFO:__main__:Epoch 0, Step 3480, Loss: 0.3631
+INFO:__main__:Epoch 0, Step 3500, Loss: 0.3599
+INFO:__main__:Epoch 0, Step 3520, Loss: 0.3815
+INFO:__main__:Epoch 0, Step 3540, Loss: 0.3950
+INFO:__main__:Epoch 0, Step 3560, Loss: 0.3762
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 851])
+INFO:__main__:Epoch 0, Step 3580, Loss: 0.4012
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1260])
+INFO:__main__:Epoch 0, Step 3600, Loss: 0.3559
+INFO:__main__:Epoch 0, Step 3620, Loss: 0.3935
+INFO:__main__:Epoch 0, Step 3640, Loss: 0.4066
+INFO:__main__:Epoch 0, Step 3660, Loss: 0.4029
+INFO:__main__:Epoch 0, Step 3680, Loss: 0.3735
+INFO:__main__:Epoch 0, Step 3700, Loss: 0.3682
+INFO:__main__:Epoch 0, Step 3720, Loss: 0.3550
+INFO:__main__:Epoch 0, Step 3740, Loss: 0.3684
+INFO:__main__:Epoch 0, Step 3760, Loss: 0.3585
+INFO:__main__:Epoch 0, Step 3780, Loss: 0.3808
+INFO:__main__:Epoch 0, Step 3800, Loss: 0.3338
+DEBUG:urllib3.connectionpool:Resetting dropped connection: huggingface.co
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 3820, Loss: 0.3503
+INFO:__main__:Epoch 0, Step 3840, Loss: 0.3705
+INFO:__main__:Epoch 0, Step 3860, Loss: 0.3061
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 3880, Loss: 0.3420
+INFO:__main__:Epoch 0, Step 3900, Loss: 0.3945
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1557])
+INFO:__main__:Epoch 0, Step 3920, Loss: 0.3670
+INFO:__main__:Epoch 0, Step 3940, Loss: 0.3957
+INFO:__main__:Epoch 0, Step 3960, Loss: 0.3780
+INFO:__main__:Epoch 0, Step 3980, Loss: 0.3843
+INFO:__main__:Epoch 0, Step 4000, Loss: 0.4068
+INFO:__main__:Epoch 0, Step 4020, Loss: 0.3729
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 820])
+INFO:__main__:Epoch 0, Step 4040, Loss: 0.3424
+INFO:__main__:Epoch 0, Step 4060, Loss: 0.3812
+INFO:__main__:Epoch 0, Step 4080, Loss: 0.3937
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1920])
+INFO:__main__:Epoch 0, Step 4100, Loss: 0.3442
+INFO:__main__:Epoch 0, Step 4120, Loss: 0.3897
+INFO:__main__:Epoch 0, Step 4140, Loss: 0.3378
+INFO:__main__:Epoch 0, Step 4160, Loss: 0.3691
+INFO:__main__:Epoch 0, Step 4180, Loss: 0.3421
+INFO:__main__:Epoch 0, Step 4200, Loss: 0.3260
+INFO:__main__:Epoch 0, Step 4220, Loss: 0.3559
+INFO:__main__:Epoch 0, Step 4240, Loss: 0.3673
+INFO:__main__:Epoch 0, Step 4260, Loss: 0.3635
+INFO:__main__:Epoch 0, Step 4280, Loss: 0.3664
+INFO:__main__:Epoch 0, Step 4300, Loss: 0.3613
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 875])
+INFO:__main__:Epoch 0, Step 4320, Loss: 0.4026
+INFO:__main__:Epoch 0, Step 4340, Loss: 0.3091
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 901])
+INFO:__main__:Epoch 0, Step 4360, Loss: 0.3311
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 840])
+INFO:__main__:Epoch 0, Step 4380, Loss: 0.3410
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 2148])
+INFO:__main__:Epoch 0, Step 4400, Loss: 0.3595
+INFO:__main__:Epoch 0, Step 4420, Loss: 0.3388
+INFO:__main__:Epoch 0, Step 4440, Loss: 0.3464
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 909])
+INFO:__main__:Epoch 0, Step 4460, Loss: 0.3542
+INFO:__main__:Epoch 0, Step 4480, Loss: 0.3588
+INFO:__main__:Epoch 0, Step 4500, Loss: 0.3868
+INFO:__main__:Epoch 0, Step 4520, Loss: 0.3434
+INFO:__main__:Epoch 0, Step 4540, Loss: 0.3607
+INFO:__main__:Epoch 0, Step 4560, Loss: 0.3749
+INFO:__main__:Epoch 0, Step 4580, Loss: 0.3767
+INFO:__main__:Epoch 0, Step 4600, Loss: 0.3298
+INFO:__main__:Epoch 0, Step 4620, Loss: 0.3407
+INFO:__main__:Epoch 0, Step 4640, Loss: 0.3348
+INFO:__main__:Epoch 0, Step 4660, Loss: 0.3118
+INFO:__main__:Epoch 0, Step 4680, Loss: 0.3387
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1553])
+INFO:__main__:Epoch 0, Step 4700, Loss: 0.3323
+INFO:__main__:Epoch 0, Step 4720, Loss: 0.3438
+INFO:__main__:Epoch 0, Step 4740, Loss: 0.3677
+INFO:__main__:Epoch 0, Step 4760, Loss: 0.2970
+DEBUG:urllib3.connectionpool:Resetting dropped connection: huggingface.co
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 4780, Loss: 0.3250
+INFO:__main__:Epoch 0, Step 4800, Loss: 0.3332
+INFO:__main__:Epoch 0, Step 4820, Loss: 0.3378
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 878])
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 852])
+INFO:__main__:Epoch 0, Step 4840, Loss: 0.3514
+INFO:__main__:Epoch 0, Step 4860, Loss: 0.3429
+INFO:__main__:Epoch 0, Step 4880, Loss: 0.3651
+INFO:__main__:Epoch 0, Step 4900, Loss: 0.3138
+INFO:__main__:Epoch 0, Step 4920, Loss: 0.3055
+INFO:__main__:Epoch 0, Step 4940, Loss: 0.3230
+INFO:__main__:Epoch 0, Step 4960, Loss: 0.3545
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1038])
+INFO:__main__:Epoch 0, Step 4980, Loss: 0.3524
+INFO:__main__:Epoch 0, Step 5000, Loss: 0.3401
+INFO:__main__:Epoch 0, Step 5020, Loss: 0.3313
+INFO:__main__:Epoch 0, Step 5040, Loss: 0.3329
+INFO:__main__:Epoch 0, Step 5060, Loss: 0.3395
+INFO:__main__:Epoch 0, Step 5080, Loss: 0.3319
+INFO:__main__:Epoch 0, Step 5100, Loss: 0.3172
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1599])
+INFO:__main__:Epoch 0, Step 5120, Loss: 0.3225
+INFO:__main__:Epoch 0, Step 5140, Loss: 0.3059
+INFO:__main__:Epoch 0, Step 5160, Loss: 0.3048
+INFO:__main__:Epoch 0, Step 5180, Loss: 0.3157
+INFO:__main__:Epoch 0, Step 5200, Loss: 0.3228
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1580])
+INFO:__main__:Epoch 0, Step 5220, Loss: 0.3506
+INFO:__main__:Epoch 0, Step 5240, Loss: 0.3549
+INFO:__main__:Epoch 0, Step 5260, Loss: 0.3542
+INFO:__main__:Epoch 0, Step 5280, Loss: 0.3559
+INFO:__main__:Epoch 0, Step 5300, Loss: 0.3640
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 3194])
+INFO:__main__:Epoch 0, Step 5320, Loss: 0.3255
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 781])
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 2619])
+INFO:__main__:Epoch 0, Step 5340, Loss: 0.3412
+INFO:__main__:Epoch 0, Step 5360, Loss: 0.3230
+INFO:__main__:Epoch 0, Step 5380, Loss: 0.3187
+INFO:__main__:Epoch 0, Step 5400, Loss: 0.3493
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 2864])
+INFO:__main__:Epoch 0, Step 5420, Loss: 0.3158
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1218])
+INFO:__main__:Epoch 0, Step 5440, Loss: 0.3024
+INFO:__main__:Epoch 0, Step 5460, Loss: 0.2904
+DEBUG:urllib3.connectionpool:Resetting dropped connection: huggingface.co
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 5480, Loss: 0.3367
+INFO:__main__:Epoch 0, Step 5500, Loss: 0.3557
+INFO:__main__:Epoch 0, Step 5520, Loss: 0.2953
+INFO:__main__:Epoch 0, Step 5540, Loss: 0.3031
+INFO:__main__:Epoch 0, Step 5560, Loss: 0.3348
+INFO:__main__:Epoch 0, Step 5580, Loss: 0.3129
+INFO:__main__:Epoch 0, Step 5600, Loss: 0.3612
+INFO:__main__:Epoch 0, Step 5620, Loss: 0.3647
+INFO:__main__:Epoch 0, Step 5640, Loss: 0.3134
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 3599])
+INFO:__main__:Epoch 0, Step 5660, Loss: 0.3593
+INFO:__main__:Epoch 0, Step 5680, Loss: 0.3412
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1226])
+INFO:__main__:Epoch 0, Step 5700, Loss: 0.3306
+INFO:__main__:Epoch 0, Step 5720, Loss: 0.3307
+INFO:__main__:Epoch 0, Step 5740, Loss: 0.3225
+INFO:__main__:Epoch 0, Step 5760, Loss: 0.3048
+INFO:__main__:Epoch 0, Step 5780, Loss: 0.2970
+INFO:__main__:Epoch 0, Step 5800, Loss: 0.3386
+INFO:__main__:Epoch 0, Step 5820, Loss: 0.3397
+INFO:__main__:Epoch 0, Step 5840, Loss: 0.3111
+INFO:__main__:Epoch 0, Step 5860, Loss: 0.3129
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 817])
+INFO:__main__:Epoch 0, Step 5880, Loss: 0.3015
+INFO:__main__:Epoch 0, Step 5900, Loss: 0.3277
+INFO:__main__:Epoch 0, Step 5920, Loss: 0.3000
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 872])
+INFO:__main__:Epoch 0, Step 5940, Loss: 0.3283
+INFO:__main__:Epoch 0, Step 5960, Loss: 0.3224
+INFO:__main__:Epoch 0, Step 5980, Loss: 0.2824
+DEBUG:urllib3.connectionpool:Resetting dropped connection: huggingface.co
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1847])
+INFO:__main__:Epoch 0, Step 6000, Loss: 0.3080
+INFO:__main__:Epoch 0, Step 6020, Loss: 0.2959
+INFO:__main__:Epoch 0, Step 6040, Loss: 0.3064
+INFO:__main__:Epoch 0, Step 6060, Loss: 0.2792
+DEBUG:urllib3.connectionpool:Resetting dropped connection: huggingface.co
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 778])
+INFO:__main__:Epoch 0, Step 6080, Loss: 0.2807
+INFO:__main__:Epoch 0, Step 6100, Loss: 0.3558
+INFO:__main__:Epoch 0, Step 6120, Loss: 0.3111
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1923])
+INFO:__main__:Epoch 0, Step 6140, Loss: 0.3204
+INFO:__main__:Epoch 0, Step 6160, Loss: 0.2823
+INFO:__main__:Epoch 0, Step 6180, Loss: 0.3139
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1237])
+INFO:__main__:Epoch 0, Step 6200, Loss: 0.3143
+INFO:__main__:Epoch 0, Step 6220, Loss: 0.3330
+INFO:__main__:Epoch 0, Step 6240, Loss: 0.2927
+INFO:__main__:Epoch 0, Step 6260, Loss: 0.3246
+INFO:__main__:Epoch 0, Step 6280, Loss: 0.3359
+INFO:__main__:Epoch 0, Step 6300, Loss: 0.3842
+INFO:__main__:Epoch 0, Step 6320, Loss: 0.3017
+INFO:__main__:Epoch 0, Step 6340, Loss: 0.3323
+INFO:__main__:Epoch 0, Step 6360, Loss: 0.3148
+INFO:__main__:Epoch 0, Step 6380, Loss: 0.3112
+INFO:__main__:Epoch 0, Step 6400, Loss: 0.2944
+INFO:__main__:Epoch 0, Step 6420, Loss: 0.3130
+INFO:__main__:Epoch 0, Step 6440, Loss: 0.3001
+INFO:__main__:Epoch 0, Step 6460, Loss: 0.3471
+INFO:__main__:Epoch 0, Step 6480, Loss: 0.2848
+INFO:__main__:Epoch 0, Step 6500, Loss: 0.3049
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 1006])
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 4151])
+INFO:__main__:Epoch 0, Step 6520, Loss: 0.3168
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 944])
+INFO:__main__:Epoch 0, Step 6540, Loss: 0.3012
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 808])
+INFO:__main__:Epoch 0, Step 6560, Loss: 0.2812
+INFO:__main__:Epoch 0, Step 6580, Loss: 0.3153
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 906])
+INFO:__main__:Epoch 0, Step 6600, Loss: 0.2738
+DEBUG:urllib3.connectionpool:Resetting dropped connection: huggingface.co
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 6620, Loss: 0.3021
+INFO:__main__:Epoch 0, Step 6640, Loss: 0.3158
+INFO:__main__:Epoch 0, Step 6660, Loss: 0.3165
+INFO:__main__:Epoch 0, Step 6680, Loss: 0.2942
+INFO:__main__:Epoch 0, Step 6700, Loss: 0.3113
+INFO:__main__:Epoch 0, Step 6720, Loss: 0.3244
+INFO:__main__:Epoch 0, Step 6740, Loss: 0.3089
+INFO:__main__:Epoch 0, Step 6760, Loss: 0.2921
+INFO:__main__:Epoch 0, Step 6780, Loss: 0.3131
+INFO:__main__:Epoch 0, Step 6800, Loss: 0.3135
+INFO:__main__:Epoch 0, Step 6820, Loss: 0.3092
+INFO:__main__:Epoch 0, Step 6840, Loss: 0.3324
+INFO:__main__:Epoch 0, Step 6860, Loss: 0.2579
+DEBUG:urllib3.connectionpool:Resetting dropped connection: huggingface.co
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Best checkpoint saved to models/sft_base_qwen7b_tools
+INFO:__main__:Epoch 0, Step 6880, Loss: 0.2796
+INFO:__main__:Epoch 0, Step 6900, Loss: 0.3069
+INFO:__main__:Epoch 0, Step 6920, Loss: 0.2804
+INFO:__main__:Epoch 0, Step 6940, Loss: 0.2720
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 779])
+INFO:__main__:Epoch 0, Step 6960, Loss: 0.2867
+INFO:__main__:Epoch 0, Step 6980, Loss: 0.2800
+INFO:__main__:Epoch 0, Step 7000, Loss: 0.3072
+INFO:__main__:Epoch 0, Step 7020, Loss: 0.3163
+INFO:__main__:Epoch 0, Step 7040, Loss: 0.3372
+INFO:__main__:Epoch 0, Step 7060, Loss: 0.3373
+INFO:__main__:Epoch 0, Step 7080, Loss: 0.3155
+INFO:__main__:Epoch 0, Step 7100, Loss: 0.3016
+INFO:__main__:Epoch 0, Step 7120, Loss: 0.3417
+INFO:__main__:Epoch 0, Step 7140, Loss: 0.2937
+INFO:__main__:Epoch 0, Step 7160, Loss: 0.3359
+INFO:__main__:Epoch 0, Step 7180, Loss: 0.3084
+INFO:__main__:Epoch 0, Step 7200, Loss: 0.3120
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 915])
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 799])
+INFO:__main__:Epoch 0, Step 7220, Loss: 0.3426
+INFO:__main__:Epoch 0, Step 7240, Loss: 0.2750
+INFO:__main__:Epoch 0, Step 7260, Loss: 0.2832
+WARNING:__main__:Skipping batch for being too big. Size: torch.Size([8, 4198])
+INFO:__main__:Epoch 0, Step 7280, Loss: 0.3139
+INFO:__main__:Epoch 0, Step 7300, Loss: 0.3004
+INFO:__main__:Epoch 0, Step 7320, Loss: 0.2743
+INFO:__main__:Epoch 0, Step 7340, Loss: 0.3383
+INFO:__main__:Epoch 0, Step 7360, Loss: 0.3038
+INFO:__main__:Epoch 0, Step 7380, Loss: 0.2844
+INFO:__main__:Epoch 0 completed.
+DEBUG:urllib3.connectionpool:Resetting dropped connection: huggingface.co
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json HTTP/1.1" 200 0
+INFO:__main__:Model saved to models/sft_base_llama_tools
+INFO:__main__:Total execution time in minutes: 443.97
+DEBUG:filelock:Attempting to acquire lock 140081776503648 on /home/mamosquerao/.triton/autotune/Fp16Matmul_2d_kernel.pickle.lock
+DEBUG:filelock:Lock 140081776503648 acquired on /home/mamosquerao/.triton/autotune/Fp16Matmul_2d_kernel.pickle.lock
+DEBUG:filelock:Attempting to release lock 140081776503648 on /home/mamosquerao/.triton/autotune/Fp16Matmul_2d_kernel.pickle.lock
+DEBUG:filelock:Lock 140081776503648 released on /home/mamosquerao/.triton/autotune/Fp16Matmul_2d_kernel.pickle.lock
+DEBUG:filelock:Attempting to acquire lock 140081776501200 on /home/mamosquerao/.triton/autotune/Fp16Matmul_4d_kernel.pickle.lock
+DEBUG:filelock:Lock 140081776501200 acquired on /home/mamosquerao/.triton/autotune/Fp16Matmul_4d_kernel.pickle.lock
+DEBUG:filelock:Attempting to release lock 140081776501200 on /home/mamosquerao/.triton/autotune/Fp16Matmul_4d_kernel.pickle.lock
+DEBUG:filelock:Lock 140081776501200 released on /home/mamosquerao/.triton/autotune/Fp16Matmul_4d_kernel.pickle.lock
