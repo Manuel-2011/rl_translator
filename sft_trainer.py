@@ -15,7 +15,8 @@ from huggingface_hub import login
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 
-login(token = "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")
+# INSERT YOUR HUGGING FACE TOKEN HERE
+login(token = "YOUR TOKEN")
 
 start_time = time.time()
 
