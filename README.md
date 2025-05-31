@@ -1,5 +1,10 @@
 # Improving Low-Resource Translation with Dictionary-Guided Fine-Tuning and RL: A Spanish-to-Wayuunaiki Study
-## Before reading this or executing any script, it is strongly adviced to read the article related to this work, found as a pdf in the root folder.
+## Before reading this or executing any script, it is strongly adviced to read the [article](AgentX.pdf) related to this work, found as a pdf in the root folder.
+## Authors
+[Manuel Mosquera](ma.mosquerao@uniandes.edu.co)
+[Melissa Robles](mv.robles@uniandes.edu.co)
+[Johan Rodriguez](jd.rodriguez1234@uniandes.edu.co)
+[Ruben Manrique](rf.manrique@uniandes.edu.co)
 
 We propose a novel approach to machine translation for low-resource languages by integrating large language models (LLMs) with external linguistic tools. Focusing on the Spanish–Wayuunaiki language pair, we frame translation as a tool-augmented decision-making problem, wherein the model can selectively consult a dictionary during the translation process. Our method combines supervised fine-tuning with reinforcement learning based on the Guided Reward Policy Optimization (GRPO) algorithm, enabling an instruction-tuned model to learn both when and how to use the external tool effectively. To align model behavior with translation quality, we leverage GRPO’s reward mechanism, guided by BLEU scores. To assess the impact of model architecture and training strategy, we conduct ablation studies on our training pipeline and compare Qwen2.5-0.5B-Instruct with other models, including LLaMA and a prior system based on the NLLB model. Preliminary results demonstrate that instruction-tuned models with tool access, further refined through reinforcement learning, achieve state-of-the-art performance on the Spanish–Wayuunaiki test set. These findings underscore the potential of LLM-based agents augmented with external tools to improve translation quality in low-resource language settings.
 
